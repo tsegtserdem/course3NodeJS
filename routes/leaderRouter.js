@@ -1,50 +1,50 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const dishRouter = express.Router();
+const leaderRouter = express.Router();
 
-dishRouter.use(bodyParser.json());
+leaderRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+leaderRouter.route('/')
 .all((req,res,next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req,res,next) => {
-    res.end('ROUTER send all the dishes to you!');
+    res.end('ROUTER send all the leads to you!');
 })
 .post((req, res, next) => {
-    res.end('ROUTER add the dish: ' + req.body.name + ' with details: ' + req.body.description);
+    res.end('ROUTER add the lead: ' + req.body.name + ' with details: ' + req.body.description);
 })
 .put((req, res, next) => {
     res.statusCode = 403;
-    res.end('ROUTER PUT operation not supported on /dishes');
+    res.end('ROUTER PUT operation not supported on /lead');
 })
 .delete((req, res, next) => {
-    res.end('ROUTER Deleting all dishes');
+    res.end('ROUTER Deleting all lead');
 });
-dishRouter.route('/:dishId')
+leaderRouter.route('/:leaderId')
 .all((req,res,next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req,res,next) => {
-    res.end('ROUTER Will send details of the dish: ' + req.params.dishId +' to you!');
+    res.end('ROUTER Will send details of the lead: ' + req.params.leaderId +' to you!');
 })
 .post((req, res, next) => {
   res.statusCode = 403;
-  res.end('ROUTER POST operation not supported on /dishes/'+ req.params.dishId);
+  res.end('ROUTER POST operation not supported on /leaderId/'+ req.params.leaderId);
 })
 .put((req, res, next) => {
-  res.write('Updating the dish: ' + req.params.dishId + '\n');
+  res.write('Updating the dish: ' + req.params.leaderId + '\n');
   res.end('ROUTER Will update the dish: ' + req.body.name + 
         ' with details: ' + req.body.description);
 })
 .delete((req, res, next) => {
-    res.end('ROUTER Deleting dish: ' + req.params.dishId);
+    res.end('ROUTER Deleting lead: ' + req.params.leaderId);
 });
 
 
-module.exports = dishRouter;
+module.exports = leaderRouter;
